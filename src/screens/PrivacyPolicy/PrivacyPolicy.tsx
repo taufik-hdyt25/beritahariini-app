@@ -1,9 +1,11 @@
 import {Text} from "@src/components/Atoms";
 import {Header} from "@src/components/Layouts";
 import {COLORS, FONTS} from "@src/constants/theme";
+import {config} from "@src/libraries/config";
 import {StackProps} from "@src/navigation/types";
 import React from "react";
 import {ScrollView, StyleSheet, View} from "react-native";
+import {BannerAd, BannerAdSize} from "react-native-google-mobile-ads";
 import HTMLView from "react-native-htmlview";
 
 const htmlContent = `<!DOCTYPE html>
@@ -37,6 +39,9 @@ const PrivacyPolicy = ({navigation}: StackProps<"PrivacyPolicy">) => {
   return (
     <View style={{flex: 1}}>
       <Header back="Back" onBack={() => navigation?.goBack()} />
+      <View style={{marginTop: 10}}>
+        <BannerAd size={BannerAdSize.LEADERBOARD} unitId={config.ads.banner} />
+      </View>
 
       <ScrollView
         style={{

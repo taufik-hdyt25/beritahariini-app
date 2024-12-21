@@ -1,9 +1,11 @@
 import {Button, Text} from "@src/components/Atoms";
 import {Header} from "@src/components/Layouts";
 import {COLORS} from "@src/constants/theme";
+import {config} from "@src/libraries/config";
 import {StackProps} from "@src/navigation/types";
 import React from "react";
 import {Image, View} from "react-native";
+import {BannerAd, BannerAdSize} from "react-native-google-mobile-ads";
 
 const About = ({navigation}: StackProps<"AboutScreen">) => {
   return (
@@ -63,6 +65,9 @@ const About = ({navigation}: StackProps<"AboutScreen">) => {
           }}
           source={require("../../assets/logoantara.png")}
         />
+      </View>
+      <View style={{marginTop: 10}}>
+        <BannerAd size={BannerAdSize.LEADERBOARD} unitId={config.ads.banner} />
       </View>
     </View>
   );
