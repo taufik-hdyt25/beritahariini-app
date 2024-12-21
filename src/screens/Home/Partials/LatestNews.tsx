@@ -12,7 +12,7 @@ interface ILatesProps {
   isLoading?: boolean;
 }
 const LatestNews: React.FC<ILatesProps> = ({data, isLoading}) => {
-  const navigation = useNavigation<ChildrenNavProps>();
+  const navigation = useNavigation<ChildrenNavProps<"HomeScreen">>();
   return (
     <View>
       <View style={styles.latestContainerStyle}>

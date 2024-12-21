@@ -1,4 +1,4 @@
-package com.beritahariini
+package com.beritahariininews
 
 import android.app.Application
 import com.facebook.react.PackageList

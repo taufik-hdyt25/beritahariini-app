@@ -1527,9 +1527,9 @@
     regenerator-runtime "^0.14.0"
 
 "@babel/runtime@^7.12.5":
-  version "7.25.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.0.tgz#3af9a91c1b739c569d5d80cc917280919c544ecb"
-  integrity sha512-7dRy4DwXwtzBrPbZflqxnvfxLF8kdZXPkhymtDeFoFqE6ldzjQFgYTtYIFARcLEYDrqfBfYcZt1WqFxRoyC9Rw==
+  version "7.26.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.0.tgz#8600c2f595f277c60815256418b85356a65173c1"
+  integrity sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -7100,10 +7100,10 @@ react-native-gesture-handler@^2.18.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
-react-native-google-mobile-ads@^14.2.2:
-  version "14.2.2"
-  resolved "https://registry.yarnpkg.com/react-native-google-mobile-ads/-/react-native-google-mobile-ads-14.2.2.tgz#8285cdbab942964763b8bfb88c710d734d124658"
-  integrity sha512-5egzO+xaochxh5fuOp8EMVUzLk8VCv6XRXuyf4WE79apHPJUMqQutHFPuGGzKdnW6ueEZaFoOmubgOA4uFAJ3g==
+react-native-google-mobile-ads@^14.7.1:
+  version "14.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-mobile-ads/-/react-native-google-mobile-ads-14.7.1.tgz#42ba82060bcf137910c90f5795710f9bbe5175f1"
+  integrity sha512-eOY8rjp55vS5O0fL/AqkZZwubCc5WFsXiXoloZklRJJ5N+bj8fy/LDU4SnsD6xmZBW0OC/eEeLwkNQifI0v9gg==
   dependencies:
     "@iabtcf/core" "^1.5.3"
     use-deep-compare-effect "^1.8.1"

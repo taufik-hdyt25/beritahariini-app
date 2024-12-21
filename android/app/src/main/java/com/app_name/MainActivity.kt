@@ -1,4 +1,4 @@
-package com.beritahariini
+package com.beritahariininews
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

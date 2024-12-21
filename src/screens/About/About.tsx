@@ -1,14 +1,11 @@
 import {Button, Text} from "@src/components/Atoms";
 import {Header} from "@src/components/Layouts";
 import {COLORS} from "@src/constants/theme";
-import getAdMobUnitId from "@src/libraries/adsmob";
 import {StackProps} from "@src/navigation/types";
 import React from "react";
-import {Image, StyleSheet, View} from "react-native";
-import {BannerAd, BannerAdSize} from "react-native-google-mobile-ads";
+import {Image, View} from "react-native";
 
 const About = ({navigation}: StackProps<"AboutScreen">) => {
-  const {banner} = getAdMobUnitId();
   return (
     <View style={{flex: 1}}>
       <Header back="Back" onBack={() => navigation?.goBack()} />
@@ -66,16 +63,6 @@ const About = ({navigation}: StackProps<"AboutScreen">) => {
           }}
           source={require("../../assets/logoantara.png")}
         />
-      </View>
-
-      <View
-        style={{
-          position: "absolute",
-          bottom: 0,
-          width: "100%",
-        }}
-      >
-        <BannerAd unitId={banner} size={BannerAdSize.LEADERBOARD} />
       </View>
     </View>
   );

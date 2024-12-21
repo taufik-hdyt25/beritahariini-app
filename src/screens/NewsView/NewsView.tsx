@@ -1,14 +1,9 @@
 import {Header} from "@src/components/Layouts";
 import SkeletonNewsDetail from "@src/components/Skeleton/SkeletonNewsDetail";
-import getAdMobUnitId from "@src/libraries/adsmob";
 import {StackProps} from "@src/navigation/types";
 import React, {useEffect, useState} from "react";
 import {View} from "react-native";
-import {
-  BannerAd,
-  BannerAdSize,
-  useInterstitialAd,
-} from "react-native-google-mobile-ads";
+import {BannerAd, BannerAdSize, TestIds} from "react-native-google-mobile-ads";
 import {WebView} from "react-native-webview";
 
 const NewsView: React.FC<StackProps<"NewsViewScreen">> = ({
@@ -16,19 +11,10 @@ const NewsView: React.FC<StackProps<"NewsViewScreen">> = ({
   route,
 }) => {
   const [loading, setLoading] = useState(true);
-  const {interstial, banner} = getAdMobUnitId();
 
-  const {isLoaded, isClosed, load, show} = useInterstitialAd(interstial);
-
-  useEffect(() => {
-    load();
-  }, [load]);
-
-  useEffect(() => {
-    if (isClosed) {
-      navigation.goBack();
-    }
-  }, [isClosed, navigation]);
+  const adUnitId = __DEV__
+    ? TestIds.BANNER
+    : "ca-app-pub-4395612014654766/6411536731";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,14 +29,12 @@ const NewsView: React.FC<StackProps<"NewsViewScreen">> = ({
       <Header
         back="Back"
         onBack={async () => {
-          if (isLoaded) {
-            show();
-          } else {
-            navigation?.goBack();
-          }
+          navigation?.goBack();
         }}
       />
-      <BannerAd unitId={banner} size={BannerAdSize.LEADERBOARD} />
+
+      <BannerAd size={BannerAdSize.FULL_BANNER} unitId={adUnitId} />
+
       {loading ? (
         <SkeletonNewsDetail />
       ) : (

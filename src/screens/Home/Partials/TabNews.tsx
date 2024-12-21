@@ -3,9 +3,11 @@ import {Skeleton, Tab, TabView} from "@rneui/themed";
 import {CardNews} from "@src/components/Moleculs";
 import {COLORS, FONTS, SIZES} from "@src/constants/theme";
 import {getBeritaAntara} from "@src/libraries/api/berita";
+import {config} from "@src/libraries/config";
 import {ChildrenNavProps} from "@src/navigation/types";
 import React, {useEffect, useState} from "react";
 import {ScrollView, StyleSheet, View} from "react-native";
+import {AdEventType, InterstitialAd} from "react-native-google-mobile-ads";
 
 interface data {
   data?: any;
@@ -13,7 +15,7 @@ interface data {
 const TabNews: React.FC<data> = ({data}) => {
   const [active, setActive] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation<ChildrenNavProps>();
+  const navigation = useNavigation<ChildrenNavProps<"HomeScreen">>();
   const Tabs = [
     "Politik",
     "Hukum",
@@ -41,6 +43,42 @@ const TabNews: React.FC<data> = ({data}) => {
       console.log(error);
     }
   };
+
+  const interstitial = InterstitialAd.createForAdRequest(
+    config.ads.interstisial,
+    {
+      keywords: ["fashion", "clothing"],
+    }
+  );
+
+  const [countTouch, setCountTouch] = useState(0);
+  const [activeAds, setActiveAds] = useState(false);
+
+  const handleTouch = () => {
+    setCountTouch(countTouch + 1);
+  };
+
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(
+      AdEventType.LOADED,
+      () => {
+        if (countTouch % 3 === 0) {
+          setActiveAds(true);
+          interstitial.show();
+        }
+      }
+    );
+    const closed = interstitial.addAdEventListener(AdEventType.CLOSED, () => {
+      setActiveAds(false);
+    });
+
+    interstitial.load();
+
+    return () => {
+      unsubscribe();
+      closed();
+    };
+  }, [countTouch]);
 
   useEffect(() => {
     if (active === 0) {
@@ -130,6 +168,7 @@ const TabNews: React.FC<data> = ({data}) => {
                       data={item}
                       isBottomTitle
                       onPress={() => {
+                        handleTouch();
                         navigation?.push("NewsViewScreen", {
                           news: item?.link,
                         });
